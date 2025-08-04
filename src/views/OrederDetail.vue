@@ -1,8 +1,9 @@
 <script setup>
-import { reactive, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { getOrder } from "@/services/orderService";
 
+const baseUrl = ref(import.meta.env.VITE_BASE_URL);
 const route = useRoute();
 
 const state = reactive({
@@ -84,12 +85,19 @@ onMounted(async () => {
             <thead>
               <tr>
                 <th>번호</th>
+                <th>이미지</th>
                 <th>상품명</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, idx) in state.order.items" :key="idx">
+              <tr v-for="(item, idx) in state.order.items" :key="item.id">
                 <td>{{ idx + 1 }}</td>
+                <td>
+                  <img
+                    :src="`${baseUrl}/pic/item/${item.imgPath}`"
+                    alt="테스트"
+                  />
+                </td>
                 <td>{{ item.name }}</td>
               </tr>
             </tbody>

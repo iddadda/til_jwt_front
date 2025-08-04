@@ -1,10 +1,11 @@
 <script setup>
 import { logout } from "@/services/accountService";
 import { useAccountStore } from "@/stores/account";
+import { useRouter } from "vue-router";
 
 const account = useAccountStore();
 // console.log(account.state.loggedIn);
-
+const router = useRouter();
 // 로그아웃
 const logoutAccount = async () => {
   if (!confirm("로그아웃 하시겠습니까?")) {
@@ -15,6 +16,7 @@ const logoutAccount = async () => {
     return;
   }
   account.logout();
+  await router.push("/");
 };
 </script>
 
