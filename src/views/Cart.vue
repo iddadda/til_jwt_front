@@ -1,12 +1,12 @@
 <script setup>
 import { getItems, removeItem, removeAll } from "@/services/cartService";
-import { onMounted, reactive, computed } from "vue";
+import { onMounted, reactive, computed, ref } from "vue";
 import { useAccountStore } from "@/stores/account";
 import { useRouter } from "vue-router";
 
 const account = useAccountStore();
 const router = useRouter();
-
+const baseUrl = ref(import.meta.env.VITE_BASE_URL);
 // 반응형 상태
 const state = reactive({
   items: [],
@@ -81,7 +81,10 @@ const computedTotalItem = computed(() => {
         </div>
         <ul class="items">
           <li v-for="i in state.items" :key="i.id">
-            <img :src="`pic/item/${i.imgPath}`" :alt="`상품 사진(${i.name})`" />
+            <img
+              :src="`${baseUrl}/pic/item/${i.imgPath}`"
+              :alt="`상품 사진(${i.name})`"
+            />
             <b class="name">{{ i.name }}</b>
             <span class="price">
               {{

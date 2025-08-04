@@ -2,6 +2,9 @@
 import { getItems } from "@/services/itemService";
 import { onMounted, reactive } from "vue";
 import Card from "@/components/Card.vue";
+import { useGlobalErrorStore } from "@/stores/global-error";
+
+const globalErrorStore = useGlobalErrorStore();
 
 const state = reactive({
   items: [],
@@ -19,6 +22,9 @@ onMounted(async () => {
 
 <template>
   <div class="home">
+    <b-modal v-model="globalErrorStore.state.isShow" ok-only>
+      {{ globalErrorStore.state.errorMessage }}
+    </b-modal>
     <div class="album py-5 bg-light">
       <div class="container">
         <!-- 반응형이 적용된 클래스 xlarge면 3칸, large면 2칸, 그것보다 작으면 1칸 -->
