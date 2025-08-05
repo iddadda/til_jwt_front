@@ -30,6 +30,7 @@ const logoutAccount = async () => {
         <div class="menus d-flex gap-3">
           <template v-if="account.state.isSigned">
             <a @click="logoutAccount">로그아웃</a>
+            <router-link to="/addproduct">상품 등록</router-link>
             <router-link to="/orders">주문 내역</router-link>
             <router-link to="/cart">장바구니</router-link>
           </template>

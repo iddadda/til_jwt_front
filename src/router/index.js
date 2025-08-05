@@ -40,6 +40,10 @@ const router = createRouter({
       path: "/orders/:id",
       component: OrederDetail,
     },
+    {
+      path: "/addproduct",
+      component: () => import("../views/ProductForm.vue"),
+    },
   ],
 });
 

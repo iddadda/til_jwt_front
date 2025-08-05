@@ -94,7 +94,7 @@ onMounted(async () => {
                 <td>{{ idx + 1 }}</td>
                 <td>
                   <img
-                    :src="`${baseUrl}/pic/item/${item.imgPath}`"
+                    :src="`${baseUrl}/pic/item/${props.item.id}/${props.item.imgPath}`"
                     alt="테스트"
                   />
                 </td>
